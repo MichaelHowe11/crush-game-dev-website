@@ -38,6 +38,17 @@ img { display: block; max-width: 100%; }
 }
 .navLinks a:hover { color: #fff; text-decoration: none; }
 
+.navToggle { display: none; }
+.navBurger { display: none; }
+.navBurger span {
+  display: block;
+  width: 26px;
+  height: 3px;
+  background: #c8cace;
+  border-radius: 2px;
+  transition: transform 0.25s ease, opacity 0.2s ease;
+}
+
 .hero {
   background: #2c2d30;
   color: #fff;
@@ -108,6 +119,10 @@ img { display: block; max-width: 100%; }
   border: 1px solid #54565d;
   border-radius: 10px;
   padding: 26px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 .officer img {
   width: 150px;
@@ -117,7 +132,7 @@ img { display: block; max-width: 100%; }
   margin: 0 auto 12px;
   border: 1px solid #54565d;
 }
-.officerCenter { max-width: 260px; margin: 0 auto; }
+.officerCenter { max-width: 225px; margin: 0 auto; }
 .officer h3 { font-size: 1.2rem; }
 .officerRole { color: #b6bac2; font-weight: bold; font-size: 0.9rem; }
 
@@ -157,7 +172,63 @@ img { display: block; max-width: 100%; }
 @media (max-width: 800px) {
   .cards { grid-template-columns: 1fr; }
   .officers { grid-template-columns: repeat(2, 1fr); }
+  .officerCenter { max-width: calc((100% - 20px) / 2); }
+
+  .navInner { justify-content: space-between; align-items: center; gap: 8px; padding-top: 18px; padding-bottom: 18px; }
+  .navInner::before { content: ""; flex: 0 0 34px; }
+  .brand { flex: 1; text-align: center; font-size: 1rem; }
+  .navBurger {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 34px;
+    height: 34px;
+    flex: 0 0 34px;
+    cursor: pointer;
+  }
+  .navLinks {
+    display: none;
+    order: 3;
+    width: 100%;
+    flex-direction: column;
+    gap: 2px;
+    margin-top: 6px;
+  }
+  .navToggle:checked ~ .navLinks { display: flex; }
+  .navLinks a {
+    margin-left: 0;
+    padding: 12px 10px;
+    text-align: center;
+    border-radius: 6px;
+    font-size: 1rem;
+  }
+  .navLinks a:hover { background: #34353a; color: #fff; text-decoration: none; }
+  .navToggle:checked ~ .navBurger span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+  .navToggle:checked ~ .navBurger span:nth-child(2) { opacity: 0; }
+  .navToggle:checked ~ .navBurger span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+  .hero { padding: 48px 0; }
+  .hero h1 { font-size: 1.9rem; }
+  .heroSub { font-size: 1rem; }
+  .section { padding: 40px 0; }
+  .section h2 { font-size: 1.55rem; }
+
+  .heroActions { flex-direction: column; gap: 12px; }
+  .heroActions .btn { width: 100%; padding: 14px 22px; font-size: 1.05rem; }
+  .btnDiscord { justify-content: center; }
 }
 @media (max-width: 480px) {
   .officers { grid-template-columns: 1fr; }
+  .officerCenter { max-width: 100%; }
+  .container { padding: 0 16px; }
+  .hero { padding: 40px 0; }
+  .hero h1 { font-size: 1.65rem; }
+  .heroSub { font-size: 0.95rem; }
+  .section { padding: 34px 0; }
+  .section h2 { font-size: 1.4rem; }
+  .card { padding: 18px; }
+  .officer img { width: 175px; height: 175px; }
+  .officer h3 { font-size: 1.35rem; }
+  .officerRole { font-size: 1rem; }
 }
